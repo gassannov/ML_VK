@@ -1,0 +1,26 @@
+cmake_minimum_required(VERSION 3.0.0)
+project(device_type)
+
+set(DEVICE_TYPE_LIBRARIES)
+set(DEVICE_TYPE_INCLUDE_DIRS)
+
+set(CMAKE_C_FLAGS ${CMAKE_C_FLAGS} "-g -O0 -Wall -W -fprofile-arcs -ftest-coverage")
+
+
+file(GLOB SOURCES *.c)
+file(GLOB INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR})
+
+add_library(${PROJECT_NAME} STATIC ${SOURCES})
+
+set(DEVICE_TYPE_LIBRARIES ${PROJECT_NAME} PARENT_SCOPE)
+set(DEVICE_TYPE_INCLUDE_DIRS ${INCLUDE_DIRS} PARENT_SCOPE)
+
+IF(LINTER)
+    set(CMAKE_C_CPPCHECK "cppcheck")
+ENDIF()
+
+target_include_directories(${PROJECT_NAME} 
+PUBLIC ${MY_STRING_INCLUDE_DIRS})
+ 
+target_link_libraries(${PROJECT_NAME} 
+PRIVATE ${MY_STRING_LIBRARIES})
