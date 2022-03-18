@@ -94,8 +94,8 @@ storage_device *create_device_by_str(char *str)
     char *divided_str = strtok(str, sep);
     int i = 1;
     char *serial_number = NULL;
-    int capacity;
-    bool rewrite_permission;
+    int capacity = 0;
+    bool rewrite_permission = false;
     device_class device_type = 0;
     while (divided_str != NULL && i <= 4)
     {
@@ -137,7 +137,6 @@ storage_device *create_device_by_str(char *str)
 void print_in_file(FILE *file, storage_device *device)
 {
     fprintf(file, "serial_number:%s\ndevice_type:%s\ncapacity:%d\nrewrite_accebility:%d\n\n", device->serial_number, type_to_str(device->device_type), device->capacity, device->rewrite_permission);
-    
 }
 
 void free_device(storage_device *device)
@@ -145,7 +144,6 @@ void free_device(storage_device *device)
     if (device)
     {
         free(device);
-        device = NULL;
     }
 }
 
@@ -153,21 +151,21 @@ size_t valid_device_count(FILE *input_file, FILE *output_file, size_t size)
 {
     size_t count = 0;
     storage_device *device;
+    char *str = (char *)malloc(BUFFER_SIZE);
     char buffer[BUFFER_SIZE];
     size_t max_len = BUFFER_SIZE;
-    char *str = malloc(max_len);
     str[0] = '\0';
-    while (fgets(buffer, BUFFER_SIZE, input_file) != NULL)
+    while (fgets(buffer, BUFFER_SIZE, input_file))
     {
         size_t current_len = strlen(str);
         size_t buffer_len = strlen(buffer);
         if (max_len - current_len < buffer_len)
         {
             max_len *= 2;
-            if ((str = realloc(str, max_len)) == NULL)
+            str = (char *)realloc(str, max_len);
+            if (str == NULL)
             {
-                free(str);
-                return 1;
+                return 0;
             }
         }
         strncpy(str + current_len, buffer, max_len - current_len);
@@ -180,10 +178,10 @@ size_t valid_device_count(FILE *input_file, FILE *output_file, size_t size)
                 if (device->capacity > size)
                 {
                     print_in_file(output_file, device);
-                    free_device(device);
                     count++;
                 }
             }
+            free_device(device);
             str[0] = '\0';
             current_len = 0;
         }
@@ -191,13 +189,13 @@ size_t valid_device_count(FILE *input_file, FILE *output_file, size_t size)
     device = create_device_by_str(str);
     if (device)
     {
-        if (device->capacity > device)
+        if (device->capacity > size)
         {
             print_in_file(output_file, device);
-            free_device(device);
             count++;
         }
     }
+    free_device(device);
     free(str);
     return count;
 }

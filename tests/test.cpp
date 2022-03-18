@@ -51,13 +51,23 @@ TEST(device, TestOnWrongCreateByStr)
     char input_str[] = "serial_number usbb 10 n";
     storage_device *device = create_device_by_str(input_str);
     EXPECT_TRUE(device == NULL);
+    free_device(device);
 }
 
 TEST(device, TestOnValidDeviceCount)
 {
     char input_str[] = "s dvd 1 n\nss dvd 3 y\nv dvd 1 y\n";
     FILE *file = fmemopen(input_str, 34, "r");
-    FILE* test_file = fmemopen(input_str, 34, "w");
-    size_t count = valid_device_count(file, test_file, 2);
+    size_t count = valid_device_count(file, stdin, 2);
     EXPECT_EQ(1, count);
+    fclose(file);
+}
+
+TEST(device, TestOnLongStr)
+{
+    char input_str[] = "his is very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very  very very long str";
+    FILE *file = fmemopen(input_str, 34, "r");
+    size_t count = valid_device_count(file, stdin, 2);
+    EXPECT_EQ(count, 0);
+    fclose(file);
 }

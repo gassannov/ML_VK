@@ -2,8 +2,8 @@
 
 int main(void)
 {
-    FILE* input_file = fopen("/Users/maratgasanov/ML_VK/1semestr/c_cpp/dz1/input.txt", "r");
-    FILE* output_file = fopen("/Users/maratgasanov/ML_VK/1semestr/c_cpp/dz1/output.txt", "w");
+    FILE* input_file = fopen("../input.txt", "r");
+    FILE* output_file = fopen("../output.txt", "w");
 
     if(!input_file || !output_file){
         return 0;
@@ -15,7 +15,7 @@ int main(void)
         return 1;
     }
 
-    int count = valid_device_count(input_file, output_file, 1);
+    int count = valid_device_count(input_file, output_file, write_size);
 
     fclose(input_file);
     fclose(output_file);
