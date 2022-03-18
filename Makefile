@@ -3,14 +3,12 @@
 build:
 	sudo apt install libgtest-dev
 	sudo apt install lcov
-	cmake -B ./build
-	cd build
-	make
+	mkdir build
+	cd build && cmake .. && cmake --build .
 	
 test:
-	./build/tests/dz1_test
+	"./build/tests/dz1_test"
 
 coverage:
-	lcov -t "build/tests/dz1_test" -o coverage.info -c -d build/storage_device/
-	genhtml -o report coverage.info
+	cd build && lcov -t "tests/test_roads" -o coverage.info -c -d storage_device/ && genhtml -o report coverage.info
 	
