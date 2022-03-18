@@ -1,30 +1,30 @@
 on: push
 
 jobs:
-    build:
+  build:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v2
-            run: make build
+        - uses: actions/checkout@v2
+        run: make build
     
-            - uses: actions/upload-artifact@v2
-            with:
-                path: build/dz1
+        - uses: actions/upload-artifact@v2
+        with:
+            path: build/dz1
         
     test:
         runs-on: ubuntu-latest
         needs: [build]
         steps:
-            - uses: actions/checkout@v2
-            run: make build && make test
+        - uses: actions/checkout@v2
+        run: make build && make test
         
     coverage:
         runs-on: ubuntu-latest
         needs: [test]
         steps:
-            - uses: actions/checkout@v2
-            run: make build && make test && make coverage
+        - uses: actions/checkout@v2
+        run: make build && make test && make coverage
         
-            - uses: actions/upload-artifact@v2
-            with:
-                path: build/report/index.html
+        - uses: actions/upload-artifact@v2
+        with:
+            path: build/report/index.html
