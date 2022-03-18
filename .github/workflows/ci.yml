@@ -3,7 +3,6 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: gassanov/dz1_docker
     steps:
     - run: docker run -d -it gassanov/dz1_docker bash
     - uses: actions/checkout@v2
@@ -11,14 +10,16 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    container: gassanov/dz1_docker
     needs: [build]
     steps:
     - uses: actions/checkout@v2
     - run: make build && make test  
+    - uses: actions/upload-artifact@v2
+      with:
+        path: test.txt
+        
   coverage:
     runs-on: ubuntu-latest
-    container: gassanov/dz1_docker
     needs: [test]
     steps:
     - uses: actions/checkout@v2
