@@ -24,7 +24,7 @@ TEST(type, TestOnTypeFunctions)
 TEST(device, TestOnBasicStorageDeviceCreate)
 {
     device_class CD = cd;
-    int capacity = 10000;
+    size_t capacity = 10000;
     bool rewrite_accebility = true;
     char *str = type_to_str(CD);
     storage_device *device = create_device(str, CD, capacity, rewrite_accebility);

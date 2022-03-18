@@ -18,11 +18,11 @@ typedef struct storage_device
 {
     char *serial_number;
     device_class device_type;
-    int capacity;
+    size_t capacity;
     bool rewrite_permission;
 } storage_device;
 
-storage_device *create_device(char *serial_number, device_class d_class, int capacity, bool rewrite_permission);
+storage_device *create_device(char *serial_number, device_class d_class, size_t capacity, bool rewrite_permission);
 storage_device *create_device_by_str(char *str);
 void free_device(storage_device *device);
 size_t valid_device_count(FILE *input_file, FILE *output_file, size_t size);

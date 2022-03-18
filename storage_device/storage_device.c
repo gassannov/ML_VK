@@ -68,7 +68,7 @@ char *type_to_str(device_class d_class)
     return NULL;
 }
 
-storage_device *create_device(char *serial_number, device_class d_class, int capacity, bool rewrite_permission)
+storage_device *create_device(char *serial_number, device_class d_class, size_t capacity, bool rewrite_permission)
 {
 
     if (serial_number == NULL || !d_class || !capacity || !(rewrite_permission == true || rewrite_permission == false))
@@ -90,11 +90,11 @@ storage_device *create_device(char *serial_number, device_class d_class, int cap
 
 storage_device *create_device_by_str(char *str)
 {
-    char *sep = " ";
+    char *sep = " \n";
     char *divided_str = strtok(str, sep);
     int i = 1;
     char *serial_number = NULL;
-    int capacity = 0;
+    size_t capacity = 0;
     bool rewrite_permission = false;
     device_class device_type = 0;
     while (divided_str != NULL && i <= 4)
@@ -111,18 +111,23 @@ storage_device *create_device_by_str(char *str)
 
         case 3:
             if (is_number(divided_str))
-                capacity = atoi(divided_str);
+                capacity = (int)atoi(divided_str);
             else
                 return NULL;
             break;
 
         case 4:
-            if (divided_str[0] == 'y')
-                rewrite_permission = true;
-            else if (divided_str[0] == 'n')
-                rewrite_permission = false;
-            else
+            if(strlen(divided_str) == 1){
+                if (divided_str[0] == 'y')
+                    rewrite_permission = true;
+                else if (divided_str[0] == 'n')
+                    rewrite_permission = false;
+                else
+                    return NULL;
+            }
+            else{
                 return NULL;
+            }
             break;
         default:
             break;
@@ -136,7 +141,7 @@ storage_device *create_device_by_str(char *str)
 
 void print_in_file(FILE *file, storage_device *device)
 {
-    fprintf(file, "serial_number:%s\ndevice_type:%s\ncapacity:%d\nrewrite_accebility:%d\n\n", device->serial_number, type_to_str(device->device_type), device->capacity, device->rewrite_permission);
+    fprintf(file, "serial_number:%s\ndevice_type:%s\ncapacity:%ld\nrewrite_accebility:%d\n\n", device->serial_number, type_to_str(device->device_type), device->capacity, device->rewrite_permission);
 }
 
 void free_device(storage_device *device)
