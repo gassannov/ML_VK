@@ -5,12 +5,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2 
-    - run: make build
+    - run: mkdir build && cd build
+            cmake .. && make
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
       with:
-            mkdir build && cd build
-            cmake .. && make
+        path: dz1
   test:
     runs-on: ubuntu-latest
     needs: [build]
