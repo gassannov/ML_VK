@@ -4,10 +4,8 @@ build:
 	sudo apt install libgtest-dev
 	sudo apt install libgtest-dev
 	mkdir build
+	cmake -B ./build
 	cd build
-	cd build
-	ls
-	cmake .. 
 	make
 	
 test:
