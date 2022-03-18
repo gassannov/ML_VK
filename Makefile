@@ -3,8 +3,10 @@
 build:
 	sudo apt install libgtest-dev
 	sudo apt install libgtest-dev
-	mkdir build && cd build
-	cmake .. && make
+	mkdir build
+	cd build
+	cmake .. 
+	make
 	
 test:
 	./build/tests/dz1_test
