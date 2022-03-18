@@ -1,24 +1,32 @@
-//
-// Created by Марат Гасанов on 09.03.2022.
-//
-
-#ifndef DZ1_STORAGE_DEVICE_H
-#define DZ1_STORAGE_DEVICE_H
-
-#include "device_type.h"
 #include "stdbool.h"
-#include "my_string.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "string.h"
+#include "ctype.h"
+
+typedef enum device_class{
+    cd = 1,
+    dvd = 2,
+    usb = 3
+} device_class;
+
+device_class str_to_type(char* str);
+char* type_to_str(device_class d_class);
 
 typedef struct storage_device{
     char *serial_number;
-    storage_device_type  device_type;
+    device_class  device_type;
     int capacity;
     bool rewrite_permission;
 } storage_device;
 
-storage_device* storage_device_create(char* serial_number, storage_device_type device_type, int capacity, bool rewrite_permission);
-storage_device* storage_device_create_by_str(char* str);
+storage_device* create_device(char* serial_number, device_class d_class, int capacity, bool rewrite_permission);
+storage_device* create_device_by_str(char* str);
+void free_device(storage_device* device);
+size_t valid_device_count(FILE *input_file, FILE* output_file, size_t size);
 
-void storage_device_free(storage_device* device);
+int str_count(FILE* file);
+int max_line(FILE *file);
 
-#endif //DZ1_STORAGE_DEVICE_H
+
+
