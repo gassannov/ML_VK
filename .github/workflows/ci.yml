@@ -20,17 +20,17 @@ jobs:
       - run: mkdir build && cd build && cmake .. && make
       - run: ./build/tests/dz1_test
     
-  coverage:
-    runs-on: ubuntu-latest
-    needs: [test]
-    steps:
-      - uses: actions/checkout@v2
-      - run: sudo apt install libgtest-dev
-      - run: mkdir build && cd build && cmake .. && make
-      - run: ./build/tests/dz1_test
-      - run: lcov -t "build/tests/dz1_test" -o coverage.info -c -d build/storage_device/
-      - run: genhtml -o report coverage.info
-      - name: Upload artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        path: build/report/index.html
+#  coverage:
+#    runs-on: ubuntu-latest
+#    needs: [test]
+#    steps:
+#      - uses: actions/checkout@v2
+#      - run: sudo apt install libgtest-dev
+#      - run: mkdir build && cd build && cmake .. && make
+#      - run: ./build/tests/dz1_test
+#      - run: lcov -t "build/tests/dz1_test" -o coverage.info -c -d build/storage_device/
+#      - run: genhtml -o report coverage.info
+#      - name: Upload artifacts
+#      uses: actions/upload-artifact@v2
+#      with:
+#        path: build/report/index.html
