@@ -6,7 +6,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: build
-      run: build
+      run: make build
     
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: test
-        run: build && test
+        run: make build && make test
         
   coverage:
     runs-on: ubuntu-latest
@@ -27,7 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: coverage
-        run: build && test && coverage
+        run: make build && make test && make coverage
         
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
