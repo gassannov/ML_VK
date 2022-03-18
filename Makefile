@@ -5,6 +5,7 @@ build:
 	sudo apt install libgtest-dev
 	mkdir build
 	cd build
+	ls
 	cmake .. 
 	make
 	
