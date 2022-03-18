@@ -3,7 +3,6 @@
 build:
 	sudo apt install libgtest-dev
 	sudo apt install lcov
-	mkdir build
 	cmake -B ./build
 	cd build
 	make
