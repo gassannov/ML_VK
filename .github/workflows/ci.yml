@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     container: gassanov/dz1_docker
     steps:
-    - run: sudo systemctl start docker
+    - run: docker run -d -it gassanov/dz1_docker bash
     - uses: actions/checkout@v2
     - run: make build
 
