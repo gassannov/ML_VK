@@ -1,9 +1,0 @@
-.PHONY: build test
-
-build:
-	mkdir build && cd build
-	cmake .. && make
-	
-test:
-	./tests/dz1_test
-
