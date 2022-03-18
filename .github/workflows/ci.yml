@@ -16,4 +16,4 @@ jobs:
     needs: [build]
     steps:
       - uses: actions/checkout@v2 
-      - run: ./build/tests/dz1_tes
+      - run: ./build/tests/dz1_test
