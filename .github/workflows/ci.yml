@@ -30,6 +30,7 @@ jobs:
       - run: ./build/tests/dz1_test
       - run: lcov -t "build/tests/dz1_test" -o coverage.info -c -d build/storage_device/
       - run: genhtml -o report coverage.info
+      - name: Upload artifacts
       uses: actions/upload-artifact@v2
       with:
-        path: build/report/.
+        path: build/report/index.html
