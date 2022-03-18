@@ -26,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: sudo apt install libgtest-dev && mkdir build && cd build && cmake .. && make
-      - run: ./build/tests/dz1_test
+      - run: ./build/tests/dz1_test && sudo apt install lcov
       - run: lcov -t "build/tests/dz1_test" -o coverage.info -c -d build/storage_device/ && genhtml -o report coverage.info
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
