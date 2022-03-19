@@ -28,4 +28,4 @@ jobs:
     - run: make build && make test && make coverage
     - uses: actions/upload-artifact@v2
       with:
-        path: build/report/index.html
+        path: build/report/

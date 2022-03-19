@@ -48,7 +48,7 @@ device_class str_to_type(char *str)
     }
 }
 
-char *type_to_str(device_class d_class)
+const char *type_to_str(device_class d_class)
 {
     if (d_class == cd)
     {
@@ -93,7 +93,7 @@ storage_device *create_device_by_str(char *str)
     char *sep = " \n";
     char *divided_str = strtok(str, sep);
     int i = 1;
-    char *serial_number = NULL;
+    char *serial_number = "standart";
     size_t capacity = 0;
     bool rewrite_permission = false;
     device_class device_type = 0;

@@ -1,3 +1,7 @@
+#ifndef STORAGE_DEVICE
+
+#define STORAGE_DEVICE
+
 #include "stdbool.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,7 +16,7 @@ typedef enum device_class
 } device_class;
 
 device_class str_to_type(char *str);
-char *type_to_str(device_class d_class);
+const char *type_to_str(device_class d_class);
 
 typedef struct storage_device
 {
@@ -29,3 +33,5 @@ size_t valid_device_count(FILE *input_file, FILE *output_file, size_t size);
 
 int str_count(FILE *file);
 int max_line(FILE *file);
+
+#endif STORAGE_DEVICE
