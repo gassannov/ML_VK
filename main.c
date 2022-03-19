@@ -7,7 +7,7 @@ int main(void)
 
     if(!input_file ){
         if (!output_file){
-            fclose(output_file)ж
+            fclose(output_file);
         }
         fclose(input_file);
         return 0;
