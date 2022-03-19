@@ -7,7 +7,7 @@ int main(void)
 
     if(!input_file ){
         if (!output_file){
-            fclose(output_file)
+            fclose(output_file)ж
         }
         fclose(input_file);
         return 0;
@@ -26,7 +26,7 @@ int main(void)
 
     int count = valid_device_count(input_file, output_file, write_size);
 
-    printf("Количество устройств на которые можно записать данные размера %d: %d\n", count);
+    printf("Количество устройств на которые можно записать данные размера %d: %d\n", write_size, count);
 
     fclose(input_file);
     fclose(output_file);
