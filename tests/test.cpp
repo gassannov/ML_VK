@@ -26,7 +26,7 @@ TEST(device, TestOnBasicStorageDeviceCreate)
     device_class CD = cd;
     size_t capacity = 10000;
     bool rewrite_accebility = true;
-    char *str = type_to_str(CD);
+    char *str = "str";
     storage_device *device = create_device(str, CD, capacity, rewrite_accebility);
     EXPECT_TRUE(device != NULL);
     EXPECT_EQ(10000, device->capacity);

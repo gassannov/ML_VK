@@ -1,7 +1,3 @@
-#ifndef STORAGE_DEVICE
-
-#define STORAGE_DEVICE
-
 #include "stdbool.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -33,5 +29,3 @@ size_t valid_device_count(FILE *input_file, FILE *output_file, size_t size);
 
 int str_count(FILE *file);
 int max_line(FILE *file);
-
-#endif STORAGE_DEVICE
