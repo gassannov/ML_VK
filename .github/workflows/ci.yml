@@ -1,0 +1,22 @@
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - run: docker run -d -it gassanov/dz1_docker bash
+    - uses: actions/checkout@v2
+    - run: make test  
+    - uses: actions/upload-artifact@v2
+      with:
+        path: log/
+
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+    - run: docker run -d -it gassanov/dz1_docker bash
+    - uses: actions/checkout@v2
+    - run: make coverage
+    - uses: actions/upload-artifact@v2
+      with:
+        path: log/
