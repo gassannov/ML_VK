@@ -1,0 +1,14 @@
+cmake_minimum_required(VERSION 3.0.0)
+project(dz2_lib)
+
+set(CMAKE_C_FLAGS ${CMAKE_C_FLAGS} "-g -O0 -Wall -W -fprofile-arcs -ftest-coverage")
+set(DZ2_LIBRARIES)
+set(DZ2_INCLUDE_DIRS)
+
+file(GLOB SOURCES *.c)
+file(GLOB INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR})
+
+add_library(${PROJECT_NAME} SHARED ${SOURCES})
+
+set(DZ2_LIBRARIES ${PROJECT_NAME} PARENT_SCOPE)
+set(DZ2_INCLUDE_DIRS ${INCLUDE_DIRS} PARENT_SCOPE)
