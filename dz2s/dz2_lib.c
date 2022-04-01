@@ -1,6 +1,6 @@
 #include "dz2_lib.h"
 
-int max_word(const char *str, size_t str_len)
+size_t max_word(const char *str, size_t str_len)
 {
     size_t curr_len = 0;
     size_t max_word = 0;
@@ -8,7 +8,7 @@ int max_word(const char *str, size_t str_len)
 
     for (size_t j = 0; j < str_len; ++j)
     {
-        if ((str[j] >= 'A' && str[j] <= ('A' + 25)) || (str[j] >= 'a' && str[j] <= ('a' + 25)))
+        if (isalpha(str[j]))
         {
             is_word = 1;
             curr_len++;

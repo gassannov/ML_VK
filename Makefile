@@ -7,10 +7,12 @@ build:
 	mkdir log
 
 assync:
+	@mkdir build
 	@cd build && cmake .. -DASYNC=ON > cmakelog.txt && make > makelog.txt && ./dz2
 	@rm -r build
 	
 static:
+	@mkdir build
 	@cd build && cmake .. -DASYNC=OFF > cmakelog.txt && make > makelog.txt && ./dz2
 	@rm -r build
 

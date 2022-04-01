@@ -8,5 +8,6 @@
 #include "string.h"
 #include <fcntl.h>
 #include <ctype.h>
+#include <signal.h>
 
-int max_word(const char* str, size_t str_len);
+size_t max_word(const char* str, size_t str_len);
